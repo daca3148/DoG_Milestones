@@ -1,5 +1,6 @@
 package servlets;
 
+import beans.User;
 import sql.UserSql;
 import util.passwordHashUtil;
 
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -30,12 +32,18 @@ public class loginServlet extends HttpServlet {
 
 		UserSql sql = new UserSql();
 
-		if (sql.readByUsernameAndPassword(username, password) != null) {
-			RequestDispatcher dispatcher = getServletContext()
-					.getRequestDispatcher("/index.jsp");
+		User user = sql.readByUsernameAndPassword(username, password);
+
+		if (user != null) {
+
+			HttpSession session = request.getSession();
+			session.setAttribute("User", user);
+
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/profile.jsp");
 			dispatcher.forward(request, response);
 		} else {
-			RequestDispatcher dispatcher = getServletContext()
+			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/login.jsp");
 			dispatcher.forward(request, response);
 		}

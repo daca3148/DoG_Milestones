@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -51,13 +52,16 @@ public class signupServlet extends HttpServlet {
 
 			out.print("success");
 
-			RequestDispatcher dispatcher = getServletContext()
-					.getRequestDispatcher("/index.jsp");
+			HttpSession session = request.getSession();
+			session.setAttribute("User", user);
+
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/profile.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			out.print("failed");
 
-			RequestDispatcher dispatcher = getServletContext()
+			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/signUp.jsp");
 			dispatcher.forward(request, response);
 
