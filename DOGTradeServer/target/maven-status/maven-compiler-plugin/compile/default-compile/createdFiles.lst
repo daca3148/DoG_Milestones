@@ -1,7 +1,9 @@
 util/SQLUtil.class
 util/passwordHashUtil.class
+servlets/stockPageServlet.class
 servlets/profileServlet.class
 servlets/signupServlet.class
 beans/User.class
 servlets/loginServlet.class
+beans/Stock.class
 sql/UserSql.class

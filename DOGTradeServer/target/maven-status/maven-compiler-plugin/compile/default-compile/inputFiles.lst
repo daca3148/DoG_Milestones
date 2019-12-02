@@ -3,5 +3,7 @@
 /Users/adammac1/IdeaProjects/DOGTradeServer/src/main/java/servlets/loginServlet.java
 /Users/adammac1/IdeaProjects/DOGTradeServer/src/main/java/util/SQLUtil.java
 /Users/adammac1/IdeaProjects/DOGTradeServer/src/main/java/servlets/signupServlet.java
+/Users/adammac1/IdeaProjects/DOGTradeServer/src/main/java/beans/Stock.java
+/Users/adammac1/IdeaProjects/DOGTradeServer/src/main/java/servlets/stockPageServlet.java
 /Users/adammac1/IdeaProjects/DOGTradeServer/src/main/java/beans/User.java
 /Users/adammac1/IdeaProjects/DOGTradeServer/src/main/java/util/passwordHashUtil.java
