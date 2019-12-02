@@ -17,17 +17,27 @@
     <link rel="stylesheet" href="profile_page.css">
     <title>My Profile</title>
 </head>
-<body style="background-image: linear-gradient(to bottom right, green, yellow);">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="topnav bg-dark">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#login">Login/Signup</a>
-        <a href="#logout">Logout</a>
-        <input type="text" placeholder="Search..">
-        <button class="btn search" type="submit" style="float: right">Search</button>
-    </div>
-</nav>
+<body style="background-image: linear-gradient(to bottom, #024166, #34a8eb);">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="col-1">
+          <a href="#home" class="btn btn-secondary" style="width:100%">Home</a>
+        </div>
+        <div class="col-1">
+          <a href="#about" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">About</a>
+        </div>
+        <div class="col-8">
+          <form class="form-inline" style="width:100%">
+            <input class="form-control mr-sm-2 col-10" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0 col-1" type="submit">Search</button>
+          </form>
+        </div>
+        <div class="col-1" style="width:100%">
+          <a href="#login" class="btn btn-secondary">Login/Signup</a>
+        </div>
+        <div class="col-1" style="width:100%">
+          <a href="#logout" class="btn btn-secondary">Logout</a>
+        </div>
+    </nav>
 <div class="container">
     <br>
     <div class="row">
