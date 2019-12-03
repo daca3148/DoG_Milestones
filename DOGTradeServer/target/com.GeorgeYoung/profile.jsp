@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="profile_page.css">
     <title>My Profile</title>
 </head>
+<!---<body style="background-image: linear-gradient(to bottom right, green, yellow);">-->
 <body style="background-image: linear-gradient(to bottom, #024166, #34a8eb);">
     <nav class="navbar navbar-dark bg-dark">
         <div class="col-1">

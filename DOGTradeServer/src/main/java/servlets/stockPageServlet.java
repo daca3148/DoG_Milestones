@@ -1,5 +1,6 @@
 package servlets;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,15 +19,19 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import java.util.Random;
 
 
 @WebServlet("/stock")
 public class stockPageServlet extends HttpServlet {
 
-	private String API_KEY = "BAGYRS53D2WXYV9V";
+	private String API_KEY = "MMK0V9IERANREGLC";
 
 	private final CloseableHttpClient httpClient = HttpClients.createDefault();
+
+	private String[] otherStocks = {"T", "ADBE", "PYPL", "INTC", "AAPL", "NVDA", "MSFT", "V", "ETSY", "F"};
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String symbol = request.getParameter("symbol");
@@ -35,50 +40,179 @@ public class stockPageServlet extends HttpServlet {
 
 		String stocksInfo = sendGetForStock(symbol);
 
+
+		//out.print(stocksInfo);
+
+		List<Stock> stocks = getStockListFromJSON(stocksInfo, symbol);
+
+		List<String> otherFiveStockSymbols = new ArrayList<>();
+
+		List<Stock> otherFiveStocks = new ArrayList<>();
+
+		for (int i = 0; i < 2; i++) {
+			Boolean isValid = false;
+			String otherStockSymbol = "";
+
+			while (!isValid) {
+				Random random = new Random();
+				otherStockSymbol = otherStocks[random.nextInt(10)];
+				if (!otherStockSymbol.equals(symbol) && !otherFiveStockSymbols.contains(otherStockSymbol)) {
+					isValid = true;
+				}
+			}
+
+			otherFiveStockSymbols.add(otherStockSymbol);
+
+			String stockJSON = sendGetForStock(otherStockSymbol);
+
+			Stock stock = getStockListFromJSON(stockJSON, otherStockSymbol).get(0);
+			otherFiveStocks.add(stock);
+
+		}
+
+
+		request.setAttribute("symbol", symbol);
+		request.setAttribute("stockDays", stocks);
+		request.setAttribute("otherStocks", otherFiveStocks);
+
+		RequestDispatcher dispatcher = request
+				.getRequestDispatcher("/StockPage.jsp");
+		dispatcher.forward(request, response);
+
+	}
+
+	List<Stock> getStockListFromJSON(String stocksInfo, String symbol) {
+		String orig1 = "}\n" +
+				"    }\n" +
+				"}";
+
+		String repl1 = "}\n" +
+				"    ]\n" +
+				"}";
+
+		String orig2 = "\"Time Series (Daily)\": {";
+
+		String repl2 = "\"Time Series (Daily)\": [";
+
+		stocksInfo = stocksInfo.replace(orig1, repl1);
+		stocksInfo = stocksInfo.replace(orig2, repl2);
+
+
+		System.out.println(stocksInfo);
+		System.out.println("StockInfo");
+
+		String arrayOfObjects = stocksInfo.substring(stocksInfo.indexOf("[") + 1, stocksInfo.indexOf("]"));
+		String[] arrayOfStringObjects = arrayOfObjects.split("},");
+		//out.print(stocksInfo);
+
 		List<Stock> stocks = new ArrayList<>();
 
-		if (!stocksInfo.equals("")) {
-			stocksInfo = stocksInfo.substring(stocksInfo.indexOf("(Daily)\":") + 9);
+		int dateIndex = stocksInfo.indexOf("\"") + 1;
 
-			for (int i = 0;  i < 7; i++) {
+		if (!stocksInfo.equals("")) {
+			//ßßßstocksInfo = stocksInfo.substring(stocksInfo.indexOf("(Daily)\":") + 9);
+
+			//JSONObject jsonObject = new JSONObject(stocksInfo);
+
+			//JSONArray jsonArray = jsonObject.getJSONArray("Time Series (Daily)");
+
+			String name = "";
+
+			switch (symbol) {
+				case "T":
+					name = "AT&T";
+					break;
+
+				case "ADBE":
+					name = "Adobe";
+					break;
+
+				case "PYPL":
+					name = "PayPal";
+					break;
+
+				case "INTC":
+					name = "Intel";
+					break;
+
+				case "AAPL":
+					name = "Apple";
+					break;
+
+				case "NVDA":
+					name = "Nvidia";
+					break;
+
+				case "MSFT":
+					name = "Microsoft";
+					break;
+
+				case "V":
+					name = "Visa";
+					break;
+
+				case "ETSY":
+					name = "Etsy";
+					break;
+
+				case "F":
+					name = "Ford";
+					break;
+
+				default:
+					break;
+
+			}
+
+			for (int i = 0; i < 7; i++) {
 				Stock stock = new Stock();
 
-				String date = stocksInfo.substring(stocksInfo.indexOf("\"") + 1);
-				date = date.substring(0, date.indexOf("\": {"));
-				stock.setDate(date);
-				System.out.println("date:");
-				System.out.println(date);
-				JSONObject obj = new JSONObject(stocksInfo);
+				arrayOfStringObjects[i] = arrayOfStringObjects[i].substring(arrayOfStringObjects[i].indexOf(":") + 1) + "}";
 
-				String open = obj.getJSONObject(date).getString("1. open");
-				out.print(open);
+				System.out.println("Testerd");
+
+				System.out.println(arrayOfStringObjects[i]);
+
+				JSONObject jsonObject = new JSONObject(arrayOfStringObjects[i]);
+
+				stock.setSymbol(symbol);
+
+				stock.setName(name);
+
+				String open = jsonObject.getString("1. open");
+				System.out.print(open);
 				stock.setOpen(open);
 
-				String high = obj.getJSONObject(date).getString("2. high");
-				out.print(high);
+				String high = jsonObject.getString("2. high");
+				//out.print(high);
 				stock.setHigh(high);
 
-				String low = obj.getJSONObject(date).getString("3. low");
-				out.print(low);
+				String low = jsonObject.getString("3. low");
+				//out.print(low);
 				stock.setLow(low);
 
-				String close = obj.getJSONObject(date).getString("4. close");
-				out.print(close);
+				String close = jsonObject.getString("4. close");
+				//out.print(close);
 				stock.setClose(close);
 
-				String volume = obj.getJSONObject(date).getString("5. volume");
-				out.print(volume);
+				String volume = jsonObject.getString("5. volume");
+				//out.print(volume);
 				stock.setVolume(volume);
 
 				stocks.add(stock);
 
 			}
+
+			return stocks;
+		} else {
+			return null;
 		}
 
 	}
 
+
 	String sendGetForStock(String symbol) {
-		HttpGet req = new HttpGet("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + symbol + "&apikey=BAGYRS53D2WXYV9V");
+		HttpGet req = new HttpGet("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + symbol + "&apikey=MMK0V9IERANREGLC");
 		try (CloseableHttpResponse resp = httpClient.execute(req)) {
 			HttpEntity entity = resp.getEntity();
 			Header headers = entity.getContentType();
@@ -91,5 +225,11 @@ public class stockPageServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		return "";
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String symbol = request.getParameter("search");
+		response.sendRedirect("/stock?symbol=" + symbol);
 	}
 }

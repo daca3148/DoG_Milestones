@@ -28,6 +28,7 @@ public class UserSql {
 				id = rs.getLong(1);
 		} catch (SQLException e) {
 			System.out.println("Database failed to update");
+			e.printStackTrace();
 		} finally {
 			SQLUtil.close(conn, stmt, rs);
 		}

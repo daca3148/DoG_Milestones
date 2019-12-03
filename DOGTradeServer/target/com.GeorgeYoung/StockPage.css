@@ -1,0 +1,19 @@
+
+.brsmall {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.box_textshadow {
+     text-shadow: 0.01em 0.01em 0.01em #FFF; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+}

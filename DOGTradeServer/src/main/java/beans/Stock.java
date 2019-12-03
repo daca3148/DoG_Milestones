@@ -7,6 +7,8 @@ public class Stock {
 	private String close;
 	private String volume;
 	private String date;
+	private String symbol;
+	private String name;
 
 	public String getOpen() {
 		return open;
@@ -55,4 +57,21 @@ public class Stock {
 	public void setDate(String date) {
 		this.date = date;
 	}
+
+	public String getSymbol() {
+		return symbol;
+	}
+
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
+
