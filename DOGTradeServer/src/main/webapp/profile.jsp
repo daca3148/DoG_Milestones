@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: MaxMac
@@ -14,6 +15,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <script src="profile_page.js"></script>
     <link rel="stylesheet" href="profile_page.css">
     <title>My Profile</title>
 </head>
@@ -44,38 +46,50 @@
     <div class="row">
         <div class="col-4">
             <div class="card " style="background-color: #6495ED">
-                <img class="card-img-top img-responsive fit-image rounded-circle" id="player_img" src="https://zdnet1.cbsistatic.com/hub/i/r/2016/11/18/a99d0e89-4964-4237-873c-cb7fe6e8ed2c/resize/770xauto/5ddd856909064f39b5fab5794a6b1e45/linux-open-source-money-penguin.jpg" alt="Profile picture">
+                <div class="container" id='img_div'>
+                  <img class="card-img-top img-responsive fit-image rounded-circle" id="user_img" style="border:0.3em solid #6491DD"
+                  src="https://zdnet1.cbsistatic.com/hub/i/r/2016/11/18/a99d0e89-4964-4237-873c-cb7fe6e8ed2c/resize/770xauto/5ddd856909064f39b5fab5794a6b1e45/linux-open-source-money-penguin.jpg"
+                  alt="Profile picture">
+                </div>
                 <div class="card-body mx-auto">
                     <h3>${sessionScope.User.name}</h3>
-                    <p>
-                        Bio
-                    </p>
-                    <div class="dropdown">
-                        <button class="btn btn-primary" type="button" id="edit_profile_button" >
-                            Edit Profile
-                        </button>
-                        <div id="player_selector" aria-labelledby="selectPlayerButton">
-                        </div>
+                    <p id="bio">Bio</p>
+                    <div class="container">
+                        <button class="btn btn-primary" onclick="editProfile()" type="button" id="edit_profile_button" >Edit Profile</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-8">
-            <div class="table table-responsive table-dark table-striped ">
-                <table class="table">
-                    <tr>
-                        <th>Time since joining:</th>
-                        <td><span id="membership_duration"></span></td>
-                    </tr>
-                    <tr>
-                        <th>Portfolio Value:</th>
-                        <td><span id="portfolio_value"></span></td>
-                    </tr>
-                    <tr>
-                        <th>Stocks Owned:</th>
-                        <td><span id="owned_stocks"></span> </td>
-                    </tr>
-                </table>
+            <div class="row">
+              <div class="container rounded bg-dark" style="margin-top:-0.2em; margin-bottom:1em; margin-left:1em; margin-right:1em">
+                  <h1 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
+                    Time since joining:
+                  </h1>
+                  <p style="font-size:4em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
+                  2000 Days
+                  </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="container rounded bg-dark" style="margin:1em">
+                  <h1 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
+                    Portfolio Value:
+                  </h1>
+                  <p style="font-size:4em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
+                  $2000
+                  </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="container rounded bg-dark" style="margin:1em">
+                  <h1 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
+                    Stocks Owned:
+                  </h1>
+                  <p style="font-size:4em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
+                  2000
+                  </p>
+              </div>
             </div>
         </div>
     </div>
