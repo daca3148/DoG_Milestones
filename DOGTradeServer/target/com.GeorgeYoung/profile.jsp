@@ -27,10 +27,10 @@
           <a href="#about" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">About</a>
         </div>
         <div class="col-8">
-          <form class="form-inline" style="width:100%">
-            <input class="form-control mr-sm-2 col-10" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0 col-1" type="submit">Search</button>
-          </form>
+            <form class="form-inline" style="width:100%" method="post">
+                <input class="form-control mr-sm-2 col-10" type="search" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn btn-outline-success my-2 my-sm-0 col-1" type="submit">Search</button>
+            </form>
         </div>
         <div class="col-1" style="width:100%">
           <a href="#login" class="btn btn-secondary">Login/Signup</a>
