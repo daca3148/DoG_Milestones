@@ -104,4 +104,27 @@ public class UserSql {
 		}
 		return id;
 	}
+
+	public Long updateImg(String imgURL, String username) {
+		Long id = -1L;
+		Connection conn = SQLUtil.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "update users set imgURL = ? where username = ?";
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, imgURL);
+			stmt.setString(2, username);
+			stmt.executeUpdate();
+			rs = stmt.getGeneratedKeys();
+			if (rs.next())
+				id = rs.getLong(1);
+		} catch (SQLException e) {
+			System.out.println("Database failed to update");
+			e.printStackTrace();
+		} finally {
+			SQLUtil.close(conn, stmt, rs);
+		}
+		return id;
+	}
 }

@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import sql.StockSql;
+import sql.UserSql;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -92,8 +93,28 @@ public class profileServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String symbol = request.getParameter("search");
-		symbol = symbol.toUpperCase();
-		response.sendRedirect("/stock?symbol=" + symbol);
+		String imgURL = request.getParameter("pic");
+
+		if (symbol != null) {
+			symbol = symbol.toUpperCase();
+			response.sendRedirect("/stock?symbol=" + symbol);
+		} else if (imgURL != null) {
+
+			HttpSession session = request.getSession();
+			User loggedInUser = (User) session.getAttribute("User");
+
+			if (loggedInUser != null) {
+				UserSql sql = new UserSql();
+				sql.updateImg(imgURL, loggedInUser.getUsername());
+			}
+
+			loggedInUser.setImgURL(imgURL);
+
+			session.setAttribute("User", loggedInUser);
+
+			response.sendRedirect("/profile");
+		}
+
 	}
 
 }
