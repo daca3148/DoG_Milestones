@@ -75,7 +75,11 @@
                     Portfolio Value:
                   </h2>
                   <p style="font-size:2.5em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
-                  $2000
+                      <c:set var="total" value="${0}"/>
+                      <c:forEach var="stock" items="${ownedStocks}">
+                          <c:set var="total" value="${total + stock.total}" />
+                      </c:forEach>
+                      <c:out value="${total}"/>
                   </p>
               </div>
             </div>
