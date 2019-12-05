@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: MaxMac
@@ -7,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
@@ -61,7 +63,7 @@
             <div class="row">
                 <div class="container rounded bg-dark" style="margin-top:0.3em; margin-bottom:0.5em; margin-left:0.5em; margin-right:0.5em">
                     <h2 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
-                        Bank Account:
+                        Current Money:
                     </h2>
                     <p style="font-size:2.5em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
                         $${User.money}
@@ -78,7 +80,8 @@
                         <c:forEach var="stock" items="${ownedStocks}">
                             <c:set var="total" value="${total + stock.total}" />
                         </c:forEach>
-                        <c:out value="${total}"/>
+                        <fmt:formatNumber value="${total}" maxFractionDigits="2" />
+
                     </p>
                 </div>
             </div>
@@ -88,7 +91,11 @@
                         Stocks Owned:
                     </h2>
                     <p style="font-size:2.5em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
-                        2000
+                        <c:set var="total" value="${0}"/>
+                        <c:forEach var="stock" items="${ownedStocks}">
+                            <c:set var="total" value="${total + stock.quantity}" />
+                        </c:forEach>
+                        <fmt:formatNumber value="${total}" maxFractionDigits="2" />
                     </p>
                 </div>
             </div>
