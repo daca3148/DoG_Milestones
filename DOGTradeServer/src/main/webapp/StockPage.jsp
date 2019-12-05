@@ -53,7 +53,7 @@
   <body style="background-image: linear-gradient(to bottom, #024166, #34a8eb);">
     <nav class="navbar navbar-dark bg-dark">
         <div class="col-1">
-          <a href="#home" class="btn btn-secondary" style="width:100%">Home</a>
+          <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/home" class="btn btn-secondary" style="width:100%">Home</a>
         </div>
         <div class="col-1">
           <a href="#about" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">About</a>
