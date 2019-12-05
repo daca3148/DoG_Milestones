@@ -106,12 +106,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td style="text-align:center">AAPL</td>
-            <td style="text-align:center">6</td>
-            <td style="text-align:center">$100</td>
-            <td style="text-align:center">$600</td>
-          </tr>
+            <c:forEach var="stock" items="ownedStocks">
+                <tr>
+                    <td style="text-align:center">${stock.symbol}</td>
+                    <td style="text-align:center">${stock.quantity}</td>
+                    <td style="text-align:center">${stock.value}</td>
+                    <td style="text-align:center">$600</td>
+                </tr>
+            </c:forEach>
+
         </tbody>
       </table>
     </div>

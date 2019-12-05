@@ -5,6 +5,8 @@ public class OwnedStock {
 	private String symbol;
 	private int quantity;
 	private Long userId;
+	private double value;
+	private double total;
 
 	public Long getId() {
 		return id;
@@ -36,5 +38,21 @@ public class OwnedStock {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public double getValue() {
+		return value;
+	}
+
+	public void setValue(double value) {
+		this.value = value;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
 	}
 }

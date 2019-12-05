@@ -6,6 +6,7 @@ import org.apache.commons.dbutils.BeanProcessor;
 import util.SQLUtil;
 
 import java.sql.*;
+import java.util.List;
 
 public class StockSql {
 
@@ -73,6 +74,29 @@ public class StockSql {
 			if (rs.next()) {
 				BeanProcessor bp = new BeanProcessor();
 				ownedStock = bp.toBean(rs, OwnedStock.class);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Database failed to query.");
+		} finally {
+			SQLUtil.close(conn, stmt, rs);
+		}
+		return ownedStock;
+	}
+
+	public List<OwnedStock> readOwnedStocks(Long userId) {
+		List<OwnedStock> ownedStock = null;
+		Connection conn = SQLUtil.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select * from stocksOwned where userId = ? ";
+			stmt = conn.prepareStatement(sql);
+			stmt.setLong(1, userId);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				BeanProcessor bp = new BeanProcessor();
+				ownedStock = bp.toBeanList(rs, OwnedStock.class);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
