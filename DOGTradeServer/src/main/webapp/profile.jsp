@@ -76,11 +76,11 @@
                         Portfolio Value:
                     </h2>
                     <p style="font-size:2.5em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
-                        $<c:set var="total" value="${0}"/>
+                        <c:set var="total" value="${0}"/>
                         <c:forEach var="stock" items="${ownedStocks}">
                             <c:set var="total" value="${total + stock.total}" />
                         </c:forEach>
-                        <fmt:formatNumber value="${total}" maxFractionDigits="2" />
+                        $<fmt:formatNumber value="${total}" maxFractionDigits="2" />
 
                     </p>
                 </div>
@@ -120,8 +120,8 @@
                     <tr>
                         <td style="text-align:center">${stock.symbol}</td>
                         <td style="text-align:center">${stock.quantity}</td>
-                        <td style="text-align:center">$${stock.value}</td>
-                        <td style="text-align:center">$${stock.total}</td>
+                        <td style="text-align:center">$<fmt:formatNumber value="${stock.value}" maxFractionDigits="2" /></td>
+                        <td style="text-align:center">$<fmt:formatNumber value="${stock.total}" maxFractionDigits="2" /></td>
                     </tr>
                 </c:forEach>
 
