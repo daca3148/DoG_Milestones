@@ -111,7 +111,7 @@
                     <td style="text-align:center">${stock.symbol}</td>
                     <td style="text-align:center">${stock.quantity}</td>
                     <td style="text-align:center">${stock.value}</td>
-                    <td style="text-align:center">$600</td>
+                    <td style="text-align:center">${stock.total}</td>
                 </tr>
             </c:forEach>
 

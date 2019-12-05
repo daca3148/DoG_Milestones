@@ -75,7 +75,9 @@
                     Portfolio Value:
                   </h2>
                   <p style="font-size:2.5em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
-                  $2000
+                  <c:forEach var="stock" items="${ownedStocks}">
+                      <%! Circle a = new Circle(2.0); %>
+                  </c:forEach>
                   </p>
               </div>
             </div>
@@ -111,7 +113,7 @@
                     <td style="text-align:center">${stock.symbol}</td>
                     <td style="text-align:center">${stock.quantity}</td>
                     <td style="text-align:center">${stock.value}</td>
-                    <td style="text-align:center">$600</td>
+                    <td style="text-align:center">${stock.total}</td>
                 </tr>
             </c:forEach>
 
