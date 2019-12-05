@@ -39,6 +39,7 @@
         chart.render();
       }
     </script>
+    <script src="StockPage.js"></script>
   </head>
   <body style="background-image: linear-gradient(to bottom, #024166, #34a8eb);">
     <nav class="navbar navbar-dark bg-dark">
@@ -77,7 +78,7 @@
 			<div class="col-6">
 				<div class="card shadow-lg  bg-white rounded " style="height:100%;">
 					<div class="my-auto">
-						<p class="h3" style="padding-left:15px;">Change Today <span id="change_today">0.5%</span><br>
+						<p class="h3" style="padding-left:15px;">Change Today <span id="change_today"></span><br>
 					    High Today: <span id="high_today">${stockDays[0].high}</span><br>
 					    Low Today: <span id="low_today">${stockDays[0].low}</span><br>
 					    Current Value: <span id="current_value">${stockDays[0].close}</span></p>
@@ -100,7 +101,7 @@
       <div class="col-10" id="display_stock_1">
         <div class="card shadow-lg bg-dark" style="height:100%; padding:0.2em 0em 0.2em 0em;">
           <div class="row">
-            <div class="col-2 bg-success rounded" style="width:30%;margin-left: 1.2em">
+            <div class="col-2 bg-success rounded" style="width:30%;margin-left: 1.2em" id="s1Color">
               <p id="display_stock_1_symbol" class="h3" style="text-align:left">${otherStocks[0].symbol}</p>
             </div>
             <p id="display_stock_1_full_name" class="h3 col" style="width:30%;text-align:center">${otherStocks[0].name}</p>
@@ -120,7 +121,7 @@
       <div class="col-10" id="display_stock_1">
         <div class="card shadow-lg bg-dark" style="height:100%; padding:0.2em 0em 0.2em 0em;">
           <div class="row">
-            <div class="col-2 bg-success rounded" style="width:30%;margin-left: 1.2em">
+            <div class="col-2 bg-success rounded" style="width:30%;margin-left: 1.2em" id="s2Color">
               <p id="display_stock_2_symbol" class="h3" style="text-align:left">${otherStocks[1].symbol}</p>
             </div>
             <p id="display_stock_2_full_name" class="h3 col" style="width:30%;text-align:center">${otherStocks[1].name}</p>
@@ -137,4 +138,5 @@
     </div>
     </div>
  </body>
+
 
