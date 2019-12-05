@@ -62,10 +62,10 @@
             <div class="row">
               <div class="container rounded bg-dark" style="margin-top:0.3em; margin-bottom:0.5em; margin-left:0.5em; margin-right:0.5em">
                   <h2 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
-                    Time since joining:
+                    Bank Account:
                   </h2>
                   <p style="font-size:2.5em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
-                  2000 Days
+                  $${User.money}
                   </p>
               </div>
             </div>
