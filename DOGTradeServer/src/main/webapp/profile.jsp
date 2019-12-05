@@ -16,7 +16,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
     <script src="profile_page.js"></script>
-    <link rel="stylesheet" href="profile_page.css">
     <title>My Profile</title>
 </head>
 <!---<body style="background-image: linear-gradient(to bottom right, green, yellow);">-->
@@ -61,37 +60,62 @@
         </div>
         <div class="col-8">
             <div class="row">
-              <div class="container rounded bg-dark" style="margin-top:-0.2em; margin-bottom:1em; margin-left:1em; margin-right:1em">
-                  <h1 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
+              <div class="container rounded bg-dark" style="margin-top:0.3em; margin-bottom:0.5em; margin-left:0.5em; margin-right:0.5em">
+                  <h2 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
                     Time since joining:
-                  </h1>
-                  <p style="font-size:4em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
+                  </h2>
+                  <p style="font-size:2.5em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
                   2000 Days
                   </p>
               </div>
             </div>
             <div class="row">
-              <div class="container rounded bg-dark" style="margin:1em">
-                  <h1 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
+              <div class="container rounded bg-dark" style="margin:0.5em">
+                  <h2 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
                     Portfolio Value:
-                  </h1>
-                  <p style="font-size:4em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
+                  </h2>
+                  <p style="font-size:2.5em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
                   $2000
                   </p>
               </div>
             </div>
             <div class="row">
-              <div class="container rounded bg-dark" style="margin:1em">
-                  <h1 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
+              <div class="container rounded bg-dark" style="margin:0.5em">
+                  <h2 style="text-align:center; -webkit-text-stroke: 0.02em skyblue; font-weight:bold; font-family: 'Comic Sans MS'">
                     Stocks Owned:
-                  </h1>
-                  <p style="font-size:4em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
+                  </h2>
+                  <p style="font-size:2.5em; text-align:center; color:skyblue; font-family: 'Comic Sans MS'">
                   2000
                   </p>
               </div>
             </div>
         </div>
     </div>
+</div>
+<br>
+<div class='container' style="margin-right:11.5em">
+  <div class="row" style="width:100%;">
+    <div class="col-12" >
+      <table class="table table-striped table-dark bg-dark">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align:center">Symbol</th>
+            <th scope="col" style="text-align:center">Quantity Owned</th>
+            <th scope="col" style="text-align:center">Stock Value</th>
+            <th scope="col" style="text-align:center">Total Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:center">AAPL</td>
+            <td style="text-align:center">6</td>
+            <td style="text-align:center">$100</td>
+            <td style="text-align:center">$600</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 </body>
 </html>
