@@ -56,7 +56,6 @@
           </form>
         </div>
         <div class="col-1" style="width:100%">
-          <a href="#login" class="btn btn-secondary">Login/Signup</a>
         </div>
         <div class="col-1" style="width:100%">
           <a href="#logout" class="btn btn-secondary">Logout</a>
