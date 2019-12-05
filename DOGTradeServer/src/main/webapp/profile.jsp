@@ -47,7 +47,7 @@
             <div class="card " style="background-color: #6495ED">
                 <div class="container" id='img_div'>
                     <img class="card-img-top img-responsive fit-image rounded-circle" id="user_img" style="border:0.3em solid #6491DD"
-                         src="https://zdnet1.cbsistatic.com/hub/i/r/2016/11/18/a99d0e89-4964-4237-873c-cb7fe6e8ed2c/resize/770xauto/5ddd856909064f39b5fab5794a6b1e45/linux-open-source-money-penguin.jpg"
+                         src=${User.imgURL}
                          alt="Profile picture">
                 </div>
                 <div class="card-body mx-auto">

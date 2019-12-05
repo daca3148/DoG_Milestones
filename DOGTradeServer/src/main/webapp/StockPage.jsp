@@ -168,7 +168,7 @@
                   <div class="modal-body">
                       <div class="form-group">
                         <label for="buy_amount">Please select a number</label>
-                        <input type="number" class="form-control text-center" style="width:25%" id="sell_amount" min="0" name="numberBuy" onkeypress="return false" ondragStart="return false" onselectstart="return false" oncut="return false" oncopy="return false" onpaste="return false" ondrag="return false" ondrop="return false" autocomplete="off">
+                        <input type="number" class="form-control text-center" style="width:25%" id="sell_amount" min="0" name="numberSell" onkeypress="return false" ondragStart="return false" onselectstart="return false" oncut="return false" oncopy="return false" onpaste="return false" ondrag="return false" ondrop="return false" autocomplete="off">
                           <input type="hidden" name="sym" value="${symbol}">
                           <input type="hidden" name="price" value="${stockDays[0].close}">
                       </div>

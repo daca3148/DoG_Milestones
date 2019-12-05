@@ -4,7 +4,7 @@ function editProfile(){
 		btn.innerHTML = "Done";
 		var oldText = document.getElementById('bio').innerHTML;
 		document.getElementById('bio').innerHTML = "<form><textarea rows='4' cols='40' maxlength='250' input type='text' id='bioText'>" + oldText + "</textarea></form>"
-		document.getElementById('img_div').innerHTML = "<form style='text-align:center' method='post'>Enter Profile Picture URL<br><input type='text' id='user_img' name='pic''><button type=\"submit\">Search</button></form>"
+		document.getElementById('img_div').innerHTML = "<form style='text-align:center' method='post'>Enter Profile Picture URL<br><input type='text' id='user_img' name='pic''><button type=\"submit\">Submit</button></form>"
 	}
 	else if(btn.innerHTML == "Done"){
 		var newImg = document.getElementById('user_img').value;

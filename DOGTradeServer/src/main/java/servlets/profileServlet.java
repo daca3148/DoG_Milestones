@@ -80,6 +80,11 @@ public class profileServlet extends HttpServlet {
 				request.setAttribute("ownedStocks", ownedStockList);
 			}
 
+			UserSql sql1 = new UserSql();
+			User user = sql1.readByUsername(loggedInUser.getUsername());
+
+			session.setAttribute("User", user);
+
 			RequestDispatcher dispatcher = getServletContext()
 					.getRequestDispatcher("/profile.jsp");
 			dispatcher.forward(request, response);
