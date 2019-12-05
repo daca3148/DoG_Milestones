@@ -1,3 +1,4 @@
+<!-- Stock Page -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -47,7 +48,7 @@
           <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/home" class="btn btn-secondary" style="width:100%">Home</a>
         </div>
         <div class="col-1">
-          <a href="#about" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">Profile</a>
+          <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/profile" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">Profile</a>
         </div>
         <div class="col-8">
           <form class="form-inline" style="width:100%" method="post">
@@ -88,10 +89,58 @@
 		<br/>
     <div class="row">
       <div class="col-6">
-        <button class="btn btn-success" style="width:100%">Buy</button>
+        <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#modalBuy">Buy</button>
+        <div class="modal fade" id="modalBuy" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">How many shares of ${stockDays[0].symbol} would you like to buy?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group" method="post">
+                    <label for="buy_amount">Please enter a number</label>
+                    <input type="number" class="form-control text-center" style="width:25%" id="buy_amount" min="0">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" type="submit">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-6">
-        <button class="btn btn-danger" style="width:100%">Sell</button>
+        <button class="btn btn-danger" style="width:100%" data-toggle="modal" data-target="#modalSell">Sell</button>
+        <div class="modal fade" id="modalSell" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">How many shares of ${stockDays[0].symbol} would you like to sell?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group" method="post">
+                    <label for="buy_amount">Please enter a number</label>
+                    <input type="number" class="form-control text-center" style="width:25%" id="sell_amount" min="0">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" type="submit">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <br/>
@@ -128,6 +177,16 @@
             <p id="display_stock_2_change" class="h3 col" style="width:30%; text-align:center">% Change</p>
           </div>
         </div>
+      </div>
+      <div class="col-2" id="display_stock_2_view">
+        <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/stock?symbol=${otherStocks[1].symbol}"><button class="btn btn-primary shadow-lg" style="width:100%;height:100%" type="button" id="display_stock_2_button" >
+        View
+        </button></a>
+      </div>
+    </div>
+    </div>
+ </body>
+
       </div>
       <div class="col-2" id="display_stock_2_view">
         <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/stock?symbol=${otherStocks[1].symbol}"><button class="btn btn-primary shadow-lg" style="width:100%;height:100%" type="button" id="display_stock_2_button" >
