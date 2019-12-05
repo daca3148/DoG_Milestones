@@ -66,8 +66,11 @@
           document.getElementById("s2Color").setAttribute('class', 'col-2 bg-success rounded')
         }
         var userMoney = ${User.money};
-        var maxBuy = userMoney/close;
-        document.getElementById('buy_amount').setAttribute('max', maxBuy.toPrecision(0));
+        var maxBuy = Math.floor(userMoney/close);
+	if(maxBuy < 1){
+		maxBuy = 0;
+	}
+        document.getElementById('buy_amount').setAttribute('max', maxBuy);
       }
     </script>
     <script src="StockPage.js"></script>
