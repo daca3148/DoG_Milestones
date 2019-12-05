@@ -8,7 +8,12 @@ function editProfile(){
 	}
 	else if(btn.innerHTML == "Done"){
 		var newImg = document.getElementById('user_img').value;
-		document.getElementById('img_div').innerHTML = "<img class='card-img-top img-responsive fit-image rounded-circle' id='user_img' style='border:0.3em solid #6491DD' src=" + newImg + " alt='Profile picture'>"
+		if(document.getElementById('user_img').value){
+			document.getElementById('img_div').innerHTML = "<img class='card-img-top img-responsive fit-image rounded-circle' id='user_img' style='border:0.3em solid #6491DD' src=" + newImg + " alt='Profile picture'>"
+		}
+		else{
+			document.getElementById('img_div').innerHTML = "<img class='card-img-top img-responsive fit-image rounded-circle' id='user_img' style='border:0.3em solid #6491DD' src='https://media1.tenor.com/images/ae96ee628ef967b0e7dcdc4b3dbff0e8/tenor.gif?itemid=14116367' alt='Profile picture'>"
+		}
 		var newText = document.getElementById('bioText').value;
 		document.getElementById('bio').innerHTML = newText;
 		btn.innerHTML = "Edit Profile";
