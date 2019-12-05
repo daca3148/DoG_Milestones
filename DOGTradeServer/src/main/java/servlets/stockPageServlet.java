@@ -6,12 +6,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import beans.Stock;
+import beans.User;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -21,6 +23,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import sql.UserSql;
+
 import java.util.Random;
 
 
@@ -230,6 +234,29 @@ public class stockPageServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String symbol = request.getParameter("search");
-		response.sendRedirect("/stock?symbol=" + symbol);
+		String numberBuy = request.getParameter("numberBuy");
+		String numberSell = request.getParameter("numberSell");
+		String sym = request.getParameter("sym");
+		double price = Double.parseDouble(request.getParameter("price"));
+
+		if (symbol != ""){
+			response.sendRedirect("/stock?symbol=" + symbol);
+		}
+
+		if (numberBuy != "") {
+
+			int num = Integer.parseInt(numberBuy);
+
+			HttpSession session = request.getSession();
+			User loggedInUser = (User) session.getAttribute("User");
+
+			UserSql sql = new UserSql();
+			User user = sql.readByUsername(loggedInUser.getUsername());
+
+			double cost = price * num;
+
+			sql.updateMoney(user.getMoney() - cost);
+
+		}
 	}
 }

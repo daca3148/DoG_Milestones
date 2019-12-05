@@ -99,18 +99,22 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <form>
-                  <div class="form-group" method="post">
-                    <label for="buy_amount">Please enter a number</label>
-                    <input type="number" class="form-control text-center" style="width:25%" id="buy_amount" min="0">
+                <form method="post">
+                  <div class="modal-body">
+
+                      <div class="form-group">
+                        <label for="buy_amount">Please enter a number</label>
+                        <input type="number" class="form-control text-center" style="width:25%" id="buy_amount" min="0" name="numberBuy">
+                          <input type="hidden" name="sym" value="${symbol}">
+                          <input type="hidden" name="price" value="${stockDays[0].close}">
+                      </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" type="submit">Confirm</button>
                   </div>
                 </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" type="submit">Confirm</button>
-              </div>
             </div>
           </div>
         </div>
@@ -126,18 +130,21 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <form>
-                  <div class="form-group" method="post">
-                    <label for="buy_amount">Please enter a number</label>
-                    <input type="number" class="form-control text-center" style="width:25%" id="sell_amount" min="0">
+                <form method="post">
+                  <div class="modal-body">
+                      <div class="form-group">
+                        <label for="buy_amount">Please enter a number</label>
+                        <input type="number" class="form-control text-center" style="width:25%" id="sell_amount" min="0" name="numberSell">
+                          <input type="hidden" name="sym" value="${symbol}">
+                          <input type="hidden" name="price" value="${stockDays[0].close}">
+                      </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" type="submit">Confirm</button>
                   </div>
                 </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" type="submit">Confirm</button>
-              </div>
             </div>
           </div>
         </div>
@@ -186,15 +193,4 @@
     </div>
     </div>
  </body>
-
-      </div>
-      <div class="col-2" id="display_stock_2_view">
-        <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/stock?symbol=${otherStocks[1].symbol}"><button class="btn btn-primary shadow-lg" style="width:100%;height:100%" type="button" id="display_stock_2_button" >
-        View
-        </button></a>
-      </div>
-    </div>
-    </div>
- </body>
-
 

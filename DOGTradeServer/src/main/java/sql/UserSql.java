@@ -81,4 +81,26 @@ public class UserSql {
 		}
 		return user;
 	}
+
+	public Long updateMoney(double money) {
+		Long id = -1L;
+		Connection conn = SQLUtil.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "update users set money = ? ";
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setDouble(1, money);
+			stmt.executeUpdate();
+			rs = stmt.getGeneratedKeys();
+			if (rs.next())
+				id = rs.getLong(1);
+		} catch (SQLException e) {
+			System.out.println("Database failed to update");
+			e.printStackTrace();
+		} finally {
+			SQLUtil.close(conn, stmt, rs);
+		}
+		return id;
+	}
 }

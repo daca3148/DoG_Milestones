@@ -1,4 +1,4 @@
-<!-- Home Page -->
+<!-- Stock Page -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,16 +12,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="StockPage.css">
-  <style>
-
-		#thermometer_inner { width: 95%; height: 20%; margin:2.5%; background: red; position:absolute; bottom:0;}
-		#thermometer_outer {height:400px; position:relative;}
-		#temp_today { color:white; text-align:center; position:relative; top:50%; }
-	</style>
-
     <script>
       window.onload = function () {
-
         var chart = new CanvasJS.Chart("chartContainer", {
           animationEnabled: true,
           theme: "light2",
@@ -46,9 +38,9 @@
           }]
         });
         chart.render();
-
       }
     </script>
+    <script src="StockPage.js"></script>
   </head>
   <body style="background-image: linear-gradient(to bottom, #024166, #34a8eb);">
     <nav class="navbar navbar-dark bg-dark">
@@ -56,7 +48,7 @@
           <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/home" class="btn btn-secondary" style="width:100%">Home</a>
         </div>
         <div class="col-1">
-          <a href="#about" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">About</a>
+          <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/profile" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">Profile</a>
         </div>
         <div class="col-8">
           <form class="form-inline" style="width:100%" method="post">
@@ -65,7 +57,6 @@
           </form>
         </div>
         <div class="col-1" style="width:100%">
-          <a href="#login" class="btn btn-secondary">Login/Signup</a>
         </div>
         <div class="col-1" style="width:100%">
           <a href="#logout" class="btn btn-secondary">Logout</a>
@@ -73,37 +64,99 @@
     </nav>
   	<div class="container">
 		<br>
-		<h1 class="bg-info rounded-pill" style="text-align:center">Placeholder for Default Stock</h1>
+		<h1 class="bg-info rounded-pill" style="text-align:center">${symbol}</h1>
 		<hr>
 		<div class="row">
 			<div class="col-6">
 				<div class="card shadow-lg bg-white rounded" style="height:100%;">
 					<div class="my-auto">
-						<!-- source for images: https://www.iconfinder.com/iconsets/weather-line-19 -->
-                      <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-						<p id="stock_symbol" class="h3 " style="text-align:center">${symbol}</p>
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 					</div>
 				</div>
 			</div>
 			<div class="col-6">
 				<div class="card shadow-lg  bg-white rounded " style="height:100%;">
 					<div class="my-auto">
-						<p class="h3" style="padding-left:15px;">Change Today <span id="precip_today">0.5%</span><br>
-					    High Today: <span id="humidity_today">${stockDays[0].high}</span><br>
-					    Low Today: <span id="wind_today">${stockDays[0].low}</span><br>
-					    Current Value: <span id="summary_today">${stockDays[0].close}</span></p>
+						<p class="h3" style="padding-left:15px;">Change Today <span id="change_today"></span><br>
+					    High Today: <span id="high_today">${stockDays[0].high}</span><br>
+					    Low Today: <span id="low_today">${stockDays[0].low}</span><br>
+					    Current Value: <span id="current_value">${stockDays[0].close}</span></p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<br>
+		<br/>
+    <div class="row">
+      <div class="col-6">
+        <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#modalBuy">Buy</button>
+        <div class="modal fade" id="modalBuy" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">How many shares of ${stockDays[0].symbol} would you like to buy?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+                <form method="post">
+                  <div class="modal-body">
+
+                      <div class="form-group">
+                        <label for="buy_amount">Please enter a number</label>
+                        <input type="number" class="form-control text-center" style="width:25%" id="buy_amount" min="0" name="numberBuy">
+                          <input type="hidden" name="sym" value="${symbol}">
+                          <input type="hidden" name="price" value="${stockDays[0].close}">
+                      </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" type="submit">Confirm</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-danger" style="width:100%" data-toggle="modal" data-target="#modalSell">Sell</button>
+        <div class="modal fade" id="modalSell" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">How many shares of ${stockDays[0].symbol} would you like to sell?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+                <form method="post">
+                  <div class="modal-body">
+                      <div class="form-group">
+                        <label for="buy_amount">Please enter a number</label>
+                        <input type="number" class="form-control text-center" style="width:25%" id="sell_amount" min="0" name="numberSell">
+                          <input type="hidden" name="sym" value="${symbol}">
+                          <input type="hidden" name="price" value="${stockDays[0].close}">
+                      </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" type="submit">Confirm</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
 		<h1 class="bg-info rounded-pill" style="text-align:center;">Other Stocks</h1><hr>
     <div class="row">
       <div class="col-10" id="display_stock_1">
         <div class="card shadow-lg bg-dark" style="height:100%; padding:0.2em 0em 0.2em 0em;">
           <div class="row">
-            <div class="col-2 bg-success rounded" style="width:30%;margin-left: 1.2em">
+            <div class="col-2 bg-success rounded" style="width:30%;margin-left: 1.2em" id="s1Color">
               <p id="display_stock_1_symbol" class="h3" style="text-align:left">${otherStocks[0].symbol}</p>
             </div>
             <p id="display_stock_1_full_name" class="h3 col" style="width:30%;text-align:center">${otherStocks[0].name}</p>
@@ -123,7 +176,7 @@
       <div class="col-10" id="display_stock_1">
         <div class="card shadow-lg bg-dark" style="height:100%; padding:0.2em 0em 0.2em 0em;">
           <div class="row">
-            <div class="col-2 bg-success rounded" style="width:30%;margin-left: 1.2em">
+            <div class="col-2 bg-success rounded" style="width:30%;margin-left: 1.2em" id="s2Color">
               <p id="display_stock_2_symbol" class="h3" style="text-align:left">${otherStocks[1].symbol}</p>
             </div>
             <p id="display_stock_2_full_name" class="h3 col" style="width:30%;text-align:center">${otherStocks[1].name}</p>
@@ -140,3 +193,4 @@
     </div>
     </div>
  </body>
+

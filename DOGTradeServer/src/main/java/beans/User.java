@@ -5,6 +5,7 @@ public class User {
 	private String username;
 	private String email;
 	private String name;
+	private int money;
 	private Long id;
 
 	public String getName() {
@@ -45,5 +46,13 @@ public class User {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 }
