@@ -1,4 +1,3 @@
-<!-- Home Page -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,16 +11,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="StockPage.css">
-  <style>
-
-		#thermometer_inner { width: 95%; height: 20%; margin:2.5%; background: red; position:absolute; bottom:0;}
-		#thermometer_outer {height:400px; position:relative;}
-		#temp_today { color:white; text-align:center; position:relative; top:50%; }
-	</style>
-
     <script>
       window.onload = function () {
-
         var chart = new CanvasJS.Chart("chartContainer", {
           animationEnabled: true,
           theme: "light2",
@@ -46,7 +37,6 @@
           }]
         });
         chart.render();
-
       }
     </script>
   </head>
@@ -56,7 +46,7 @@
           <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/home" class="btn btn-secondary" style="width:100%">Home</a>
         </div>
         <div class="col-1">
-          <a href="#about" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">About</a>
+          <a href="#about" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">Profile</a>
         </div>
         <div class="col-8">
           <form class="form-inline" style="width:100%" method="post">
@@ -73,31 +63,38 @@
     </nav>
   	<div class="container">
 		<br>
-		<h1 class="bg-info rounded-pill" style="text-align:center">Placeholder for Default Stock</h1>
+		<h1 class="bg-info rounded-pill" style="text-align:center">${symbol}</h1>
 		<hr>
 		<div class="row">
 			<div class="col-6">
 				<div class="card shadow-lg bg-white rounded" style="height:100%;">
 					<div class="my-auto">
-						<!-- source for images: https://www.iconfinder.com/iconsets/weather-line-19 -->
-                      <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-						<p id="stock_symbol" class="h3 " style="text-align:center">${symbol}</p>
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 					</div>
 				</div>
 			</div>
 			<div class="col-6">
 				<div class="card shadow-lg  bg-white rounded " style="height:100%;">
 					<div class="my-auto">
-						<p class="h3" style="padding-left:15px;">Change Today <span id="precip_today">0.5%</span><br>
-					    High Today: <span id="humidity_today">${stockDays[0].high}</span><br>
-					    Low Today: <span id="wind_today">${stockDays[0].low}</span><br>
-					    Current Value: <span id="summary_today">${stockDays[0].close}</span></p>
+						<p class="h3" style="padding-left:15px;">Change Today <span id="change_today">0.5%</span><br>
+					    High Today: <span id="high_today">${stockDays[0].high}</span><br>
+					    Low Today: <span id="low_today">${stockDays[0].low}</span><br>
+					    Current Value: <span id="current_value">${stockDays[0].close}</span></p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<br>
+		<br/>
+    <div class="row">
+      <div class="col-6">
+        <button class="btn btn-success" style="width:100%">Buy</button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-danger" style="width:100%">Sell</button>
+      </div>
+    </div>
+    <br/>
 		<h1 class="bg-info rounded-pill" style="text-align:center;">Other Stocks</h1><hr>
     <div class="row">
       <div class="col-10" id="display_stock_1">
@@ -140,3 +137,4 @@
     </div>
     </div>
  </body>
+
