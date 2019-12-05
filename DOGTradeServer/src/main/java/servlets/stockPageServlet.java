@@ -46,45 +46,90 @@ public class stockPageServlet extends HttpServlet {
 
 		String stocksInfo = sendGetForStock(symbol);
 
-
 		//out.print(stocksInfo);
 
-		List<Stock> stocks = getStockListFromJSON(stocksInfo, symbol);
+		HttpSession session = request.getSession();
+		User loggedInUser = (User) session.getAttribute("User");
 
-		List<String> otherFiveStockSymbols = new ArrayList<>();
+		if (loggedInUser == null) {
 
-		List<Stock> otherFiveStocks = new ArrayList<>();
+			response.sendRedirect("/login");
 
-		for (int i = 0; i < 2; i++) {
-			Boolean isValid = false;
-			String otherStockSymbol = "";
+		} else if (!stocksInfo.contains("Error Message")) {
+			List<Stock> stocks = getStockListFromJSON(stocksInfo, symbol);
 
-			while (!isValid) {
-				Random random = new Random();
-				otherStockSymbol = otherStocks[random.nextInt(10)];
-				if (!otherStockSymbol.equals(symbol) && !otherFiveStockSymbols.contains(otherStockSymbol)) {
-					isValid = true;
+			List<String> otherFiveStockSymbols = new ArrayList<>();
+
+			List<Stock> otherFiveStocks = new ArrayList<>();
+
+			for (int i = 0; i < 2; i++) {
+				Boolean isValid = false;
+				String otherStockSymbol = "";
+
+				while (!isValid) {
+					Random random = new Random();
+					otherStockSymbol = otherStocks[random.nextInt(10)];
+					if (!otherStockSymbol.equals(symbol) && !otherFiveStockSymbols.contains(otherStockSymbol)) {
+						isValid = true;
+					}
 				}
+
+				otherFiveStockSymbols.add(otherStockSymbol);
+
+				String stockJSON = sendGetForStock(otherStockSymbol);
+
+				Stock stock = getStockListFromJSON(stockJSON, otherStockSymbol).get(0);
+				otherFiveStocks.add(stock);
+
 			}
 
-			otherFiveStockSymbols.add(otherStockSymbol);
+			StockSql sql = new StockSql();
+			OwnedStock stock = sql.readStock(symbol, loggedInUser.getId());
 
-			String stockJSON = sendGetForStock(otherStockSymbol);
+			if (stock != null) {
+				request.setAttribute("quantity", stock.getQuantity());
+			}
 
-			Stock stock = getStockListFromJSON(stockJSON, otherStockSymbol).get(0);
-			otherFiveStocks.add(stock);
+			request.setAttribute("symbol", symbol);
+			request.setAttribute("stockDays", stocks);
+			request.setAttribute("otherStocks", otherFiveStocks);
 
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/StockPage.jsp");
+			dispatcher.forward(request, response);
+		} else {
+
+			List<String> otherFiveStockSymbols = new ArrayList<>();
+
+			List<Stock> otherFiveStocks = new ArrayList<>();
+
+			for (int i = 0; i < 2; i++) {
+				Boolean isValid = false;
+				String otherStockSymbol = "";
+
+				while (!isValid) {
+					Random random = new Random();
+					otherStockSymbol = otherStocks[random.nextInt(10)];
+					if (!otherStockSymbol.equals(symbol) && !otherFiveStockSymbols.contains(otherStockSymbol)) {
+						isValid = true;
+					}
+				}
+
+				otherFiveStockSymbols.add(otherStockSymbol);
+
+				String stockJSON = sendGetForStock(otherStockSymbol);
+
+				Stock stock = getStockListFromJSON(stockJSON, otherStockSymbol).get(0);
+				otherFiveStocks.add(stock);
+
+				request.setAttribute("otherStocks", otherFiveStocks);
+
+			}
+
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/StockErrorPage.jsp");
+			dispatcher.forward(request, response);
 		}
-
-
-		request.setAttribute("symbol", symbol);
-		request.setAttribute("stockDays", stocks);
-		request.setAttribute("otherStocks", otherFiveStocks);
-
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/StockPage.jsp");
-		dispatcher.forward(request, response);
-
 	}
 
 	List<Stock> getStockListFromJSON(String stocksInfo, String symbol) {
@@ -239,13 +284,16 @@ public class stockPageServlet extends HttpServlet {
 		String numberBuy = request.getParameter("numberBuy");
 		String numberSell = request.getParameter("numberSell");
 		String sym = request.getParameter("sym");
-		double price = Double.parseDouble(request.getParameter("price"));
+		String priceStr = request.getParameter("price");
 
 		if (symbol != null){
+			symbol = symbol.toUpperCase();
 			response.sendRedirect("/stock?symbol=" + symbol);
 		}
 
 		if (numberBuy != null) {
+
+			double price = Double.parseDouble(priceStr);
 
 			int num = Integer.parseInt(numberBuy);
 
@@ -274,13 +322,13 @@ public class stockPageServlet extends HttpServlet {
 				int quantity = ownedStock.getQuantity() + num;
 				sql1.updateQuantity(sym, loggedInUser.getId(), quantity);
 			}
-
-
 		}
 
 		if (numberSell != null) {
 
-			int num = Integer.parseInt(numberBuy);
+			double price = Double.parseDouble(priceStr);
+
+			int num = Integer.parseInt(numberSell);
 
 			HttpSession session = request.getSession();
 			User loggedInUser = (User) session.getAttribute("User");
@@ -291,6 +339,13 @@ public class stockPageServlet extends HttpServlet {
 			double cost = price * num;
 
 			sql.updateMoney(user.getMoney() + cost, loggedInUser.getUsername());
+
+			StockSql sql1 = new StockSql();
+
+			OwnedStock ownedStock = sql1.readStock(sym, loggedInUser.getId());
+
+			int quantity = ownedStock.getQuantity() - num;
+			sql1.updateQuantity(sym, loggedInUser.getId(), quantity);
 
 		}
 	}

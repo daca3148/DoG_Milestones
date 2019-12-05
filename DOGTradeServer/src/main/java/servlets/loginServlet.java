@@ -17,6 +17,14 @@ import java.io.PrintWriter;
 @WebServlet("/login")
 public class loginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String loggedOut = request.getParameter("logOut");
+
+		if (loggedOut != null && loggedOut.equals("logOut")) {
+			HttpSession session = request.getSession();
+			session.setAttribute("User", null);
+		}
+
 		RequestDispatcher dispatcher = getServletContext()
 				.getRequestDispatcher("/login.jsp");
 		dispatcher.forward(request, response);
@@ -39,9 +47,7 @@ public class loginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("User", user);
 
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/profile.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("/profile");
 		} else {
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/login.jsp");

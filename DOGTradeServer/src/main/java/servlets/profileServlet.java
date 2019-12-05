@@ -18,6 +18,7 @@ public class profileServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String symbol = request.getParameter("search");
+		symbol = symbol.toUpperCase();
 		response.sendRedirect("/stock?symbol=" + symbol);
 	}
 

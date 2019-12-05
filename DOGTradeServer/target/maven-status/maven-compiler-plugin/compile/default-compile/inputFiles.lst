@@ -6,5 +6,7 @@
 /Users/adammac1/Desktop/DoG_milestones/DOGTradeServer/src/main/java/servlets/profileServlet.java
 /Users/adammac1/Desktop/DoG_milestones/DOGTradeServer/src/main/java/util/SQLUtil.java
 /Users/adammac1/Desktop/DoG_milestones/DOGTradeServer/src/main/java/util/passwordHashUtil.java
+/Users/adammac1/Desktop/DoG_milestones/DOGTradeServer/src/main/java/sql/StockSql.java
 /Users/adammac1/Desktop/DoG_milestones/DOGTradeServer/src/main/java/servlets/stockPageServlet.java
+/Users/adammac1/Desktop/DoG_milestones/DOGTradeServer/src/main/java/beans/OwnedStock.java
 /Users/adammac1/Desktop/DoG_milestones/DOGTradeServer/src/main/java/sql/UserSql.java

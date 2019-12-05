@@ -31,7 +31,7 @@
         <div class="col-1" style="width:100%">
         </div>
         <div class="col-1" style="width:100%">
-          <a href="#logout" class="btn btn-secondary">Logout</a>
+          <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/login?logOut=logOut" class="btn btn-secondary">Logout</a>
         </div>
     </nav>
   	<div class="container">
