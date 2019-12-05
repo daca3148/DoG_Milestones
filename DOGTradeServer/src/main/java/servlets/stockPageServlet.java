@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.OwnedStock;
 import beans.Stock;
 import beans.User;
 import org.apache.http.Header;
@@ -23,6 +24,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import sql.StockSql;
 import sql.UserSql;
 
 import java.util.Random;
@@ -255,7 +257,40 @@ public class stockPageServlet extends HttpServlet {
 
 			double cost = price * num;
 
-			sql.updateMoney(user.getMoney() - cost);
+			sql.updateMoney(user.getMoney() - cost, loggedInUser.getUsername());
+
+			StockSql sql1 = new StockSql();
+
+			OwnedStock ownedStock = sql1.readStock(sym, loggedInUser.getId());
+
+			if (ownedStock == null) {
+				OwnedStock stock = new OwnedStock();
+				stock.setQuantity(num);
+				stock.setSymbol(sym);
+				stock.setUserId(loggedInUser.getId());
+
+				sql1.create(stock);
+			} else {
+				int quantity = ownedStock.getQuantity() + num;
+				sql1.updateQuantity(sym, loggedInUser.getId(), quantity);
+			}
+
+
+		}
+
+		if (numberSell != null) {
+
+			int num = Integer.parseInt(numberBuy);
+
+			HttpSession session = request.getSession();
+			User loggedInUser = (User) session.getAttribute("User");
+
+			UserSql sql = new UserSql();
+			User user = sql.readByUsername(loggedInUser.getUsername());
+
+			double cost = price * num;
+
+			sql.updateMoney(user.getMoney() + cost, loggedInUser.getUsername());
 
 		}
 	}

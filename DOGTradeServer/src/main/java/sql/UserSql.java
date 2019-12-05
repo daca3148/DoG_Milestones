@@ -82,15 +82,16 @@ public class UserSql {
 		return user;
 	}
 
-	public Long updateMoney(double money) {
+	public Long updateMoney(double money, String username) {
 		Long id = -1L;
 		Connection conn = SQLUtil.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "update users set money = ? ";
+			String sql = "update users set money = ? where username = ?";
 			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setDouble(1, money);
+			stmt.setString(2, username);
 			stmt.executeUpdate();
 			rs = stmt.getGeneratedKeys();
 			if (rs.next())
