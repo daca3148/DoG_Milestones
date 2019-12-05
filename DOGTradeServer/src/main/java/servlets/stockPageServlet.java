@@ -88,6 +88,8 @@ public class stockPageServlet extends HttpServlet {
 
 			if (stock != null) {
 				request.setAttribute("quantity", stock.getQuantity());
+			} else {
+				request.setAttribute("quantity", 0);
 			}
 
 			request.setAttribute("symbol", symbol);

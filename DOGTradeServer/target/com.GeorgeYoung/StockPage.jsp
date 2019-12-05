@@ -71,9 +71,7 @@
 		        maxBuy = 0;
 	      }
         document.getElementById('buy_amount').setAttribute('max', maxBuy);
-        function checkMoney(){
-
-        }
+        document.getElementById('sell_amount').setAttribute('max', ${quantity});
       }
     </script>
     <script src="StockPage.js"></script>
@@ -228,4 +226,5 @@
       </div>
     </div>
     </div>
- </body>	
+ </body>
+	

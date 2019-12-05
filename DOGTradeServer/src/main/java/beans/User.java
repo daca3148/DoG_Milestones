@@ -7,6 +7,7 @@ public class User {
 	private String name;
 	private int money;
 	private Long id;
+	private String imgURL;
 
 	public String getName() {
 		return name;
@@ -54,5 +55,13 @@ public class User {
 
 	public void setMoney(int money) {
 		this.money = money;
+	}
+
+	public String getImgURL() {
+		return imgURL;
+	}
+
+	public void setImgURL(String imgURL) {
+		this.imgURL = imgURL;
 	}
 }
