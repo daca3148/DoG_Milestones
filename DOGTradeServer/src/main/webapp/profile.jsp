@@ -26,7 +26,7 @@
             <a href="http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/home" class="btn btn-secondary" style="width:100%">Home</a>
         </div>
         <div class="col-1">
-          <a href="#about" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">About</a>
+          <a href="#profile" class="btn btn-secondary" style="width:100%; margin-left:-1.6em">Profile</a>
         </div>
         <div class="col-8">
             <form class="form-inline" style="width:100%" method="post">
@@ -35,7 +35,6 @@
             </form>
         </div>
         <div class="col-1" style="width:100%">
-          <a href="#login" class="btn btn-secondary">Login/Signup</a>
         </div>
         <div class="col-1" style="width:100%">
           <a href="#logout" class="btn btn-secondary">Logout</a>
