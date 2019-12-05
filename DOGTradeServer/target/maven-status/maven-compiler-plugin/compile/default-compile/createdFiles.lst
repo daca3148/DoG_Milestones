@@ -3,6 +3,7 @@ util/passwordHashUtil.class
 servlets/stockPageServlet.class
 servlets/profileServlet.class
 servlets/signupServlet.class
+servlets/homeServlet.class
 beans/User.class
 servlets/loginServlet.class
 beans/Stock.class

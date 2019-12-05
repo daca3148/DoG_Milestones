@@ -7,7 +7,7 @@
   <absolute-ordering/>
   <display-name>DOGTrader</display-name>
   <welcome-file-list>
-    <welcome-file>login</welcome-file>
+    <welcome-file>home</welcome-file>
   </welcome-file-list>
   <session-config>
     <tracking-mode>COOKIE</tracking-mode>
