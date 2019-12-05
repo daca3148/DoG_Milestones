@@ -71,10 +71,9 @@ public class StockSql {
 			stmt.setString(1, symbol);
 			stmt.setLong(2, userId);
 			rs = stmt.executeQuery();
-			if (rs.next()) {
-				BeanProcessor bp = new BeanProcessor();
-				ownedStock = bp.toBean(rs, OwnedStock.class);
-			}
+			BeanProcessor bp = new BeanProcessor();
+			ownedStock = bp.toBean(rs, OwnedStock.class);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Database failed to query.");

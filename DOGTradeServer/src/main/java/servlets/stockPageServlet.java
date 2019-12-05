@@ -322,6 +322,8 @@ public class stockPageServlet extends HttpServlet {
 				int quantity = ownedStock.getQuantity() + num;
 				sql1.updateQuantity(sym, loggedInUser.getId(), quantity);
 			}
+
+			response.sendRedirect("/profile");
 		}
 
 		if (numberSell != null) {
@@ -346,6 +348,8 @@ public class stockPageServlet extends HttpServlet {
 
 			int quantity = ownedStock.getQuantity() - num;
 			sql1.updateQuantity(sym, loggedInUser.getId(), quantity);
+
+			response.sendRedirect("/profile");
 
 		}
 	}

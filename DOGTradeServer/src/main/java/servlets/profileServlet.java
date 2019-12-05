@@ -32,50 +32,52 @@ public class profileServlet extends HttpServlet {
 
 			List<OwnedStock> ownedStockList = sql.readOwnedStocks(loggedInUser.getId());
 
-			for(int i = 0; i < ownedStockList.size(); i++) {
+			if (ownedStockList != null) {
+				for (int i = 0; i < ownedStockList.size(); i++) {
 
 
 
-				stockPageServlet stockPageServlet = new stockPageServlet();
-				String stocksInfo = stockPageServlet.sendGetForStock(ownedStockList.get(i).getSymbol());
+					stockPageServlet stockPageServlet = new stockPageServlet();
+					String stocksInfo = stockPageServlet.sendGetForStock(ownedStockList.get(i).getSymbol());
 
-				String orig1 = "}\n" +
-						"    }\n" +
-						"}";
+					String orig1 = "}\n" +
+							"    }\n" +
+							"}";
 
-				String repl1 = "}\n" +
-						"    ]\n" +
-						"}";
+					String repl1 = "}\n" +
+							"    ]\n" +
+							"}";
 
-				String orig2 = "\"Time Series (Daily)\": {";
+					String orig2 = "\"Time Series (Daily)\": {";
 
-				String repl2 = "\"Time Series (Daily)\": [";
+					String repl2 = "\"Time Series (Daily)\": [";
 
-				stocksInfo = stocksInfo.replace(orig1, repl1);
-				stocksInfo = stocksInfo.replace(orig2, repl2);
-
-
-				System.out.println(stocksInfo);
-				System.out.println("StockInfo");
-
-				String arrayOfObjects = stocksInfo.substring(stocksInfo.indexOf("[") + 1, stocksInfo.indexOf("]"));
-				String[] arrayOfStringObjects = arrayOfObjects.split("},");
+					stocksInfo = stocksInfo.replace(orig1, repl1);
+					stocksInfo = stocksInfo.replace(orig2, repl2);
 
 
-				arrayOfStringObjects[i] = arrayOfStringObjects[i].substring(arrayOfStringObjects[i].indexOf(":") + 1) + "}";
+					System.out.println(stocksInfo);
+					System.out.println("StockInfo");
 
-				JSONObject jsonObject = new JSONObject(arrayOfStringObjects[i]);
-
-				String close = jsonObject.getString("4. close");
-
-				double val = Double.parseDouble(close);
-				ownedStockList.get(i).setValue(val);
-				ownedStockList.get(i).setTotal(ownedStockList.get(i).getQuantity() * val);
+					String arrayOfObjects = stocksInfo.substring(stocksInfo.indexOf("[") + 1, stocksInfo.indexOf("]"));
+					String[] arrayOfStringObjects = arrayOfObjects.split("},");
 
 
+					arrayOfStringObjects[i] = arrayOfStringObjects[i].substring(arrayOfStringObjects[i].indexOf(":") + 1) + "}";
+
+					JSONObject jsonObject = new JSONObject(arrayOfStringObjects[i]);
+
+					String close = jsonObject.getString("4. close");
+
+					double val = Double.parseDouble(close);
+					ownedStockList.get(i).setValue(val);
+					ownedStockList.get(i).setTotal(ownedStockList.get(i).getQuantity() * val);
+
+
+				}
+
+				request.setAttribute("ownedStocks", ownedStockList);
 			}
-
-			request.setAttribute("ownedStocks", ownedStockList);
 
 			RequestDispatcher dispatcher = getServletContext()
 					.getRequestDispatcher("/profile.jsp");

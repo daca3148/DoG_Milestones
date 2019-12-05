@@ -55,9 +55,7 @@ public class signupServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("User", user);
 
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/profile.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("/profile");
 		} else {
 			out.print("failed");
 

@@ -106,7 +106,7 @@
           </tr>
         </thead>
         <tbody>
-            <c:forEach var="stock" items="ownedStocks">
+            <c:forEach items="${ownedStocks}" var="stock">
                 <tr>
                     <td style="text-align:center">${stock.symbol}</td>
                     <td style="text-align:center">${stock.quantity}</td>
