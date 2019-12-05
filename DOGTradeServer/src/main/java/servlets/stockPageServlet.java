@@ -239,11 +239,11 @@ public class stockPageServlet extends HttpServlet {
 		String sym = request.getParameter("sym");
 		double price = Double.parseDouble(request.getParameter("price"));
 
-		if (symbol != ""){
+		if (symbol != null){
 			response.sendRedirect("/stock?symbol=" + symbol);
 		}
 
-		if (numberBuy != "") {
+		if (numberBuy != null) {
 
 			int num = Integer.parseInt(numberBuy);
 
