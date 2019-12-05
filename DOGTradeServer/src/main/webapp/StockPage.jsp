@@ -67,10 +67,13 @@
         }
         var userMoney = ${User.money};
         var maxBuy = Math.floor(userMoney/close);
-	if(maxBuy < 1){
-		maxBuy = 0;
-	}
+	      if(maxBuy < 1){
+		        maxBuy = 0;
+	      }
         document.getElementById('buy_amount').setAttribute('max', maxBuy);
+        function checkMoney(){
+
+        }
       }
     </script>
     <script src="StockPage.js"></script>
@@ -136,8 +139,8 @@
                   <div class="modal-body">
 
                       <div class="form-group">
-                        <label for="buy_amount">Please enter a number</label>
-                        <input type="number" class="form-control text-center" style="width:25%" id="buy_amount" min="0" name="numberBuy">
+                        <label for="buy_amount">Please select a number</label>
+                        <input type="number" class="form-control text-center" style="width:25%" id="buy_amount" min="0" name="numberBuy" onkeypress="return false" ondragStart="return false" onselectstart="return false" oncut="return false" oncopy="return false" onpaste="return false" ondrag="return false" ondrop="return false" autocomplete="off">
                           <input type="hidden" name="sym" value="${symbol}">
                           <input type="hidden" name="price" value="${stockDays[0].close}">
                       </div>
@@ -166,8 +169,8 @@
                 <form method="post">
                   <div class="modal-body">
                       <div class="form-group">
-                        <label for="buy_amount">Please enter a number</label>
-                        <input type="number" class="form-control text-center" style="width:25%" id="sell_amount" min="0" name="numberSell">
+                        <label for="buy_amount">Please select a number</label>
+                        <input type="number" class="form-control text-center" style="width:25%" id="sell_amount" min="0" name="numberBuy" onkeypress="return false" ondragStart="return false" onselectstart="return false" oncut="return false" oncopy="return false" onpaste="return false" ondrag="return false" ondrop="return false" autocomplete="off">
                           <input type="hidden" name="sym" value="${symbol}">
                           <input type="hidden" name="price" value="${stockDays[0].close}">
                       </div>
@@ -225,5 +228,4 @@
       </div>
     </div>
     </div>
- </body>
-	
+ </body>	
