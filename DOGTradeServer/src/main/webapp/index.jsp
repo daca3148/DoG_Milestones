@@ -74,8 +74,8 @@
 		<div class="row">
 			<div class="col-lg-7 col-sm-12 col-xs-12">
 				<div class="hero-text">
-					 <h2>The quick brown fox jumps over the lazy dog</h2>
-					 <p>The quick brown fox jumps over the lazy dog</p>
+					 <h2>DOGTrader</h2>
+					 <p>Getting your feet wet in stock trading.</p>
 					 <div class="home_btn">
 						<a href="#" class="get_btn wow bounceIn page-scroll" data-wow-delay=".4s" >get start now</a>
 					</div>
@@ -83,25 +83,27 @@
 			</div><!-- END COL-->
 			<div class="col-lg-5 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
 				<div class="register">
-					<h4 class="login_register_title">Get Your Account Now</h4>
-					<div class="form-group">
-						<input type="username" class=" form-control requiredField input-label" placeholder="Username*" name="username">
-					</div>
-					<div class="form-group">
-						<input type="realname" class=" form-control requiredField input-label" placeholder="Name*" name="realname">
-					</div>
-					<div class="form-group">
-						<input type="email" class="form-control requiredField input-label" placeholder="Email*" name="email" >
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control requiredField input-label" placeholder="password*" name="password" >
-					</div>
-					<div class="form-group mbnone text-center">
-						<button class="btn btn-register-bg" type="submit" name="submit">signup now</button>
-					</div>
-					<div class="form-group mbnone text-center">
-						<button class="btn btn-login-bg" type="submit" name="submit">Login</button>
-					</div>
+					<form method="post">
+						<h4 class="login_register_title">Get Your Account Now</h4>
+						<div class="form-group">
+							<input type="username" class=" form-control requiredField input-label" placeholder="Username*" name="username">
+						</div>
+						<div class="form-group">
+							<input type="realname" class=" form-control requiredField input-label" placeholder="Name*" name="name">
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control requiredField input-label" placeholder="Email*" name="email" >
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control requiredField input-label" placeholder="password*" name="password" >
+						</div>
+						<div class="form-group mbnone text-center">
+							<button class="btn btn-register-bg" type="submit" name="submit">signup now</button>
+						</div>
+						<div class="form-group mbnone text-center">
+							<button class="btn btn-login-bg" type="submit" name="submit">Login</button>
+						</div>
+					</form>
 				</div>
 			</div><!-- END COL-->
 		</div><!-- END ROW-->
