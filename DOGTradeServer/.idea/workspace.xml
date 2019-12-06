@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a21b4ff-c492-4651-98cc-81f2ecf76ffc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/profileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/profileServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/StockPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/StockPage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/profile_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/profile_page.js" afterDir="false" />
-    </list>
+    <list default="true" id="2a21b4ff-c492-4651-98cc-81f2ecf76ffc" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +14,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/StockPage.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="822">
-              <caret line="170" column="137" selection-start-line="170" selection-start-column="137" selection-end-line="170" selection-end-column="137" />
+            <state relative-caret-position="792">
+              <caret line="168" column="46" lean-forward="true" selection-start-line="168" selection-start-column="46" selection-end-line="168" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -263,7 +257,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575538717095" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575538731282" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -298,17 +292,18 @@
       <workItem from="1575329296503" duration="15039000" />
       <workItem from="1575511267434" duration="627000" />
       <workItem from="1575522641876" duration="553000" />
-      <workItem from="1575523705967" duration="13888000" />
+      <workItem from="1575523705967" duration="14053000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30107000" />
+    <option name="totallyTimeSpent" value="30272000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2392" y="246" width="2312" height="1470" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11409692" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11409692" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -318,7 +313,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.13788098" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.13788098" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -607,8 +602,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/StockPage.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="822">
-          <caret line="170" column="137" selection-start-line="170" selection-start-column="137" selection-end-line="170" selection-end-column="137" />
+        <state relative-caret-position="792">
+          <caret line="168" column="46" lean-forward="true" selection-start-line="168" selection-start-column="46" selection-end-line="168" selection-end-column="46" />
         </state>
       </provider>
     </entry>
