@@ -1,0 +1,12 @@
+Organization / Structure: 
+  - All milestones are in the repository.
+  - The code is inside the DOGTraderServer directory
+    - The Java code is in DOGTradeServer/src/main/java
+    - The JSP, CSS, and JavaScript code is in DOGTradeServer/src/main/webapp
+    
+How To Build / Run / Test Code:
+  - Deploy a TomCat server
+    - Build the install on IntelliJ Idea with Maven
+    - Deploy the .war to the TomCat server
+  - Currently running at http://dogtrader-env.kgd6nfmk8q.us-east-1.elasticbeanstalk.com/
+  
